@@ -26,8 +26,36 @@
 #define STRICT
 #endif
 
+#ifdef _WIN32
 #include <windows.h>
 #include <mmsystem.h>
+#else
+typedef struct WAVEOUT* HWAVEOUT;
+typedef struct WAVEHDR* LPWAVEHDR;
+typedef struct WAVEFORMAT *LPWAVEFORMAT;
+#include <stdint.h>
+
+typedef struct WAVEFORMAT
+{
+    uint16_t wFormatTag;
+    uint16_t nChannels;
+    uint32_t nSamplesPerSec;
+    uint32_t nAvgBytesPerSec;
+    uint16_t nBlockAlign;
+    uint16_t wBitsPerSample;
+    uint16_t cbSize;
+} WAVEFORMAT;
+
+typedef struct PCMWAVEFORMAT
+{
+    WAVEFORMAT wf;
+    uint16_t wBitsPerSample;
+} PCMWAVEFORMAT;
+
+#define WAVE_FORMAT_PCM 0x0001
+
+typedef HWAVEOUT *LPHWAVEOUT;
+#endif
 
 #if !defined _MSC_VER
 #if !defined(__stdcall)
