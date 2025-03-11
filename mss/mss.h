@@ -143,10 +143,14 @@ typedef void(__stdcall *AIL_stream_callback)(HSTREAM);
 typedef void(__stdcall *AIL_3dsample_callback)(H3DPOBJECT);
 typedef void(__stdcall *AIL_sample_callback)(HSAMPLE);
 
-#if !defined BUILD_STUBS && defined _WIN32
-#define IMPORTS __declspec(dllimport)
+#if defined _WIN32
+    #if !defined BUILD_STUBS
+    #define IMPORTS __declspec(dllimport)
+    #else
+    #define IMPORTS __declspec(dllexport)
+    #endif
 #else
-#define IMPORTS
+    #define IMPORTS
 #endif
 
 #define DIG_USE_WAVEOUT 15

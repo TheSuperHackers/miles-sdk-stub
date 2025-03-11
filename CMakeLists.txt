@@ -8,7 +8,7 @@ endif()
 project(milesstub VERSION 1.0.0 LANGUAGES C)
 
 add_library(milescleanup STATIC cleanup.c)
-add_library(milesstub SHARED miles.c miles.def)
+add_library(milesstub SHARED miles.c)
 set_target_properties(milesstub PROPERTIES OUTPUT_NAME mss32)
 set_target_properties(milesstub PROPERTIES SOVERSION 1.0 VERSION 1.0.0)
 target_include_directories(milesstub PUBLIC
