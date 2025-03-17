@@ -20,7 +20,7 @@ long __stdcall AIL_3D_sample_volume(H3DSAMPLE sample)
     return 0;
 }
 
-void __stdcall AIL_set_3D_sample_volume(H3DSAMPLE sample, long volume)
+void __stdcall AIL_set_3D_sample_volume(H3DSAMPLE sample, float volume)
 {
 }
 
@@ -40,12 +40,12 @@ void __stdcall AIL_start_3D_sample(H3DSAMPLE sample)
 {
 }
 
-int __stdcall AIL_3D_sample_loop_count(H3DSAMPLE sample)
+unsigned int __stdcall AIL_3D_sample_loop_count(H3DSAMPLE sample)
 {
     return 0;
 }
 
-void __stdcall AIL_set_3D_sample_offset(H3DSAMPLE sample, int offset)
+void __stdcall AIL_set_3D_sample_offset(H3DSAMPLE sample, unsigned int offset)
 {
 }
 
@@ -54,7 +54,7 @@ int __stdcall AIL_3D_sample_length(H3DSAMPLE sample)
     return 0;
 }
 
-int __stdcall AIL_3D_sample_offset(H3DSAMPLE sample)
+unsigned int __stdcall AIL_3D_sample_offset(H3DSAMPLE sample)
 {
     return 0;
 }
@@ -104,7 +104,7 @@ void __stdcall AIL_waveOutClose(HDIGDRIVER driver)
 {
 }
 
-void __stdcall AIL_set_3D_sample_loop_count(H3DSAMPLE sample, int count)
+void __stdcall AIL_set_3D_sample_loop_count(H3DSAMPLE sample, unsigned int count)
 {
 }
 
@@ -355,12 +355,12 @@ H3DPOBJECT __stdcall AIL_open_3D_listener(HPROVIDER lib)
     return 0;
 }
 
-int __stdcall AIL_3D_user_data(H3DSAMPLE sample, int index)
+int __stdcall AIL_3D_user_data(H3DSAMPLE sample, unsigned int index)
 {
     return 0;
 }
 
-int __stdcall AIL_sample_user_data(HSAMPLE sample, int index)
+int __stdcall AIL_sample_user_data(HSAMPLE sample, unsigned int index)
 {
     return 0;
 }
