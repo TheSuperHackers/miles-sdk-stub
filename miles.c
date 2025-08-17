@@ -315,7 +315,7 @@ H3DSAMPLE __stdcall AIL_allocate_3D_sample_handle(HPROVIDER lib)
     return 0;
 }
 
-void __stdcall AIL_set_3D_user_data(H3DPOBJECT obj, unsigned int index, int value)
+void __stdcall AIL_set_3D_user_data(H3DPOBJECT obj, unsigned int index, void *value)
 {
 }
 
@@ -355,12 +355,12 @@ H3DPOBJECT __stdcall AIL_open_3D_listener(HPROVIDER lib)
     return 0;
 }
 
-int __stdcall AIL_3D_user_data(H3DSAMPLE sample, unsigned int index)
+void *__stdcall AIL_3D_user_data(H3DSAMPLE sample, unsigned int index)
 {
     return 0;
 }
 
-int __stdcall AIL_sample_user_data(HSAMPLE sample, unsigned int index)
+void *__stdcall AIL_sample_user_data(HSAMPLE sample, unsigned int index)
 {
     return 0;
 }
@@ -370,7 +370,7 @@ HSAMPLE __stdcall AIL_allocate_sample_handle(HDIGDRIVER dig)
     return 0;
 }
 
-void __stdcall AIL_set_sample_user_data(HSAMPLE sample, unsigned int index, int value)
+void __stdcall AIL_set_sample_user_data(HSAMPLE sample, unsigned int index, void *value)
 {
 }
 
@@ -402,7 +402,7 @@ HAUDIO __stdcall AIL_quick_load_and_play(const char *filename, unsigned int loop
 }
 
 void __stdcall AIL_quick_set_volume(HAUDIO audio, float volume, float extravol)
-{  
+{
 }
 
 int __stdcall AIL_quick_startup(
@@ -416,7 +416,7 @@ void __stdcall AIL_quick_handles(HDIGDRIVER *pdig, HMDIDRIVER *pmdi, HDLSDEVICE 
 }
 
 void __stdcall AIL_sample_volume_pan(HSAMPLE sample, float *volume, float *pan)
-{ 
+{
 }
 
 void __stdcall AIL_set_3D_sample_occlusion(H3DSAMPLE sample, float occlusion)

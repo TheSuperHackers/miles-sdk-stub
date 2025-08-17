@@ -92,7 +92,7 @@ typedef struct _DIG_DRIVER *HDIGDRIVER;
 typedef struct _AUDIO *HAUDIO;
 typedef struct _HMDIDRIVER *HMDIDRIVER;
 typedef struct _HDLSDEVICE *HDLSDEVICE;
-typedef unsigned long HPROVIDER;
+typedef void *HPROVIDER;
 typedef int HTIMER;
 typedef unsigned int HPROENUM;
 typedef int M3DRESULT;
@@ -135,10 +135,10 @@ typedef float F32;
 /*
  * Various callback typedefs.
  */
-typedef unsigned long(__stdcall *AIL_file_open_callback)(const char *, unsigned long*);
-typedef void(__stdcall *AIL_file_close_callback)(unsigned long);
-typedef long(__stdcall *AIL_file_seek_callback)(unsigned long, long, unsigned long);
-typedef unsigned long(__stdcall *AIL_file_read_callback)(unsigned long, void *, unsigned long);
+typedef unsigned long(__stdcall *AIL_file_open_callback)(const char *, void**);
+typedef void(__stdcall *AIL_file_close_callback)(void*);
+typedef long(__stdcall *AIL_file_seek_callback)(void*, long, unsigned long);
+typedef unsigned long(__stdcall *AIL_file_read_callback)(void*, void *, unsigned long);
 typedef void(__stdcall *AIL_stream_callback)(HSTREAM);
 typedef void(__stdcall *AIL_3dsample_callback)(H3DPOBJECT);
 typedef void(__stdcall *AIL_sample_callback)(HSAMPLE);
@@ -250,7 +250,7 @@ IMPORTS void __stdcall AIL_set_file_callbacks(AIL_file_open_callback opencb, AIL
     AIL_file_seek_callback seekcb, AIL_file_read_callback readcb);
 IMPORTS void __stdcall AIL_release_3D_sample_handle(H3DSAMPLE sample);
 IMPORTS H3DSAMPLE __stdcall AIL_allocate_3D_sample_handle(HPROVIDER lib);
-IMPORTS void __stdcall AIL_set_3D_user_data(H3DPOBJECT obj, unsigned int index, int value);
+IMPORTS void __stdcall AIL_set_3D_user_data(H3DPOBJECT obj, unsigned int index, void *value);
 IMPORTS void __stdcall AIL_unlock(void);
 IMPORTS void __stdcall AIL_lock(void);
 IMPORTS void __stdcall AIL_set_3D_speaker_type(HPROVIDER lib, int speaker_type);
@@ -259,10 +259,10 @@ IMPORTS int __stdcall AIL_enumerate_3D_providers(HPROENUM* next, HPROVIDER* dest
 IMPORTS M3DRESULT __stdcall AIL_open_3D_provider(HPROVIDER lib);
 IMPORTS char* __stdcall AIL_last_error(void);
 IMPORTS H3DPOBJECT __stdcall AIL_open_3D_listener(HPROVIDER lib);
-IMPORTS int __stdcall AIL_3D_user_data(H3DSAMPLE sample, unsigned int index);
-IMPORTS int __stdcall AIL_sample_user_data(HSAMPLE sample, unsigned int index);
+IMPORTS void * __stdcall AIL_3D_user_data(H3DSAMPLE sample, unsigned int index);
+IMPORTS void * __stdcall AIL_sample_user_data(HSAMPLE sample, unsigned int index);
 IMPORTS HSAMPLE __stdcall AIL_allocate_sample_handle(HDIGDRIVER dig);
-IMPORTS void __stdcall AIL_set_sample_user_data(HSAMPLE sample, unsigned int index, int value);
+IMPORTS void __stdcall AIL_set_sample_user_data(HSAMPLE sample, unsigned int index, void *value);
 IMPORTS int __stdcall AIL_decompress_ADPCM(const AILSOUNDINFO *info, void **outdata, unsigned long *outsize);
 IMPORTS void __stdcall AIL_get_DirectSound_info(HSAMPLE sample, AILLPDIRECTSOUND *lplpDS, AILLPDIRECTSOUNDBUFFER *lplpDSB);
 IMPORTS void __stdcall AIL_mem_free_lock(void *ptr);
