@@ -15,7 +15,17 @@
 #include "mss/mss.h"
 #include <stddef.h>
 
-long __stdcall AIL_3D_sample_volume(H3DSAMPLE sample)
+#ifdef MILES_NOFLOAT
+int __stdcall AIL_3D_sample_volume(H3DSAMPLE sample)
+{
+    return 0;
+}
+
+void __stdcall AIL_set_3D_sample_volume(H3DSAMPLE sample, int volume)
+{
+}
+#else
+float __stdcall AIL_3D_sample_volume(H3DSAMPLE sample)
 {
     return 0;
 }
@@ -23,6 +33,7 @@ long __stdcall AIL_3D_sample_volume(H3DSAMPLE sample)
 void __stdcall AIL_set_3D_sample_volume(H3DSAMPLE sample, float volume)
 {
 }
+#endif
 
 void __stdcall AIL_end_3D_sample(H3DSAMPLE sample)
 {

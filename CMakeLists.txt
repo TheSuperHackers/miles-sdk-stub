@@ -7,6 +7,8 @@ endif()
 
 project(milesstub VERSION 1.0.0 LANGUAGES C)
 
+option(MILES_NOFLOAT "Don't use float for some volume functions." OFF)
+
 add_library(milescleanup STATIC cleanup.c)
 add_library(milesstub SHARED miles.c)
 set_target_properties(milesstub PROPERTIES OUTPUT_NAME mss32)
@@ -17,3 +19,7 @@ target_include_directories(milesstub PUBLIC
 )
 target_compile_definitions(milesstub PRIVATE BUILD_STUBS)
 target_link_libraries(milesstub INTERFACE milescleanup)
+
+if(MILES_NOFLOAT)
+    target_compile_definitions(milesstub PUBLIC MILES_NOFLOAT)
+endif()

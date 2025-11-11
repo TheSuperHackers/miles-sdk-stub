@@ -179,8 +179,13 @@ typedef void(__stdcall *AIL_sample_callback)(HSAMPLE);
 #define NO  0
 #endif
 
-IMPORTS long __stdcall AIL_3D_sample_volume(H3DSAMPLE sample);
+#ifdef MILES_NOFLOAT
+IMPORTS int __stdcall AIL_3D_sample_volume(H3DSAMPLE sample);
+IMPORTS void __stdcall AIL_set_3D_sample_volume(H3DSAMPLE sample, int volume);
+#else
+IMPORTS float __stdcall AIL_3D_sample_volume(H3DSAMPLE sample);
 IMPORTS void __stdcall AIL_set_3D_sample_volume(H3DSAMPLE sample, float volume);
+#endif
 IMPORTS void __stdcall AIL_end_3D_sample(H3DSAMPLE sample);
 IMPORTS void __stdcall AIL_resume_3D_sample(H3DSAMPLE sample);
 IMPORTS void __stdcall AIL_stop_3D_sample(H3DSAMPLE sample);
