@@ -13,6 +13,9 @@ add_library(milescleanup STATIC cleanup.c)
 add_library(milesstub SHARED miles.c)
 set_target_properties(milesstub PROPERTIES OUTPUT_NAME mss32)
 set_target_properties(milesstub PROPERTIES SOVERSION 1.0 VERSION 1.0.0)
+if(WIN32)
+    set_target_properties(milesstub PROPERTIES PREFIX "")
+endif()
 target_include_directories(milesstub PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>      #include <mss/mss.h>
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/mss>  #include <mss.h>
